@@ -45,11 +45,11 @@
 #   end
 # end
 
-set :css_dir, 'css'
+set :css_dir, 'stylesheets'
 
-set :js_dir, 'js'
+set :js_dir, 'javascripts'
 
-set :images_dir, 'img'
+set :images_dir, 'images'
 
 # Build-specific configuration
 configure :build do
@@ -67,4 +67,15 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+end
+
+
+HandlebarsAssets::Config.haml_options
+HandlebarsAssets::Config.template_namespace = 'JST'
+
+# Add sprockets paths here
+after_configuration do
+  sprockets.append_path 'vendor/javascripts'
+  sprockets.append_path 'vendor/stylesheets'
+  sprockets.append_path HandlebarsAssets.path
 end
